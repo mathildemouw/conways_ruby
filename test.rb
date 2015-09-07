@@ -20,6 +20,12 @@ describe Game do
  				   					 [0,0,1],
  				   					 [1,1,1]]
 
+	live_cell_1_neighbor = [1,0] #=> dies
+	live_cell_3_neighbors = [2,1] #=> stays alive
+	live_cell_4_neighbors = [3,1] #=> dies
+	dead_cell_3_neighbors = [2,2] #=> lives
+	dead_cell_wrap_5_neighbors = [3,0] #=> stays dead
+
  	subject = Game.new(board)
 	describe "#next_turn" do
 		it "returns the next board" do
@@ -28,21 +34,11 @@ describe Game do
 	end
 
 	describe "#number_of_living_neighbors" do
-		live_cell_1_neighbor = [1,0] #=> dies
-		live_cell_3_neighbors = [2,1] #=> lives
-		live_cell_4_neighbors = [3,1] #=> dies
-		dead_cell_wrap_4_neighbors = [2,0] #=> dies
-		dead_cell_wrap_5_neighbors = [3,0]
-
 		it "returns the correct number of living neighbors" do
 			expect(subject.number_of_living_neighbors(live_cell_1_neighbor[0], live_cell_1_neighbor[1]) == 1)
 			expect(subject.number_of_living_neighbors(live_cell_3_neighbors[0], live_cell_3_neighbors[1]) == 3)
-			expect(subject.number_of_living_neighbors(live_cell_4_neighbors[0], live_cell_4_neighbors[1]) == 4)
-			# subject.visualize_board
-			# subject.visualize_neighbors(dead_cell_3_neighbors[0], dead_cell_3_neighbors[1])
-			expect(subject.number_of_living_neighbors(dead_cell_wrap_4_neighbors[0], dead_cell_wrap_4_neighbors[1]) == 4)
+			expect(subject.number_of_living_neighbors(dead_cell_3_neighbors[0], dead_cell_3_neighbors[1]) == 3)
 			expect(subject.number_of_living_neighbors(dead_cell_wrap_5_neighbors[0], dead_cell_wrap_5_neighbors[1]) == 5)
-
 		end
 	end
 end

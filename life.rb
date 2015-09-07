@@ -8,9 +8,9 @@ class Game
 	end
 
 	def number_of_living_neighbors(row, column)
-		@board[row - 1][column - 1] 	+ @board[row - 1][column] 	+ @board[row - 1][column + 1] +
-		@board[row][column - 1] 													 			+ @board[row][column + 1] +
-		@board[row + 1][column - 1] 	+ @board[row + 1][column] 	+ @board[row + 1][column + 1]
+		@board[row - 1][column - 1] 	+ @board[row - 1][column] 	+ (@board[row - 1][column + 1] || @board[row - 1][column]) +
+		@board[row][column - 1] 													 			  + (@board[row][column + 1] || @board[row][column])				 +
+		@board[row + 1][column - 1] 	+ @board[row + 1][column] 	+ (@board[row + 1][column + 1] || @board[row + 1][column])
 	end
 
 	def visualize_board
