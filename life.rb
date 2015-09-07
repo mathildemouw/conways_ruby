@@ -5,6 +5,19 @@ class Game
 	end
  	
 	def next_turn
+
+	end
+
+	def transform_cell(cell_value, living_neighbors)
+		if living_neighbors > 3
+			return 0
+		elsif living_neighbors < 2
+			return 0
+		elsif living_neighbors == 3
+			return 1
+		else
+			return cell_value
+		end
 	end
 
 	def number_of_living_neighbors(row, column)

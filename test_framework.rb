@@ -10,9 +10,8 @@ end
 
 def expect(behavior)
  if behavior 
- 	puts "and it does!"
+ 	puts "*"
  else 
- 	puts "but something went wrong"
- 	puts behavior
+ 	puts "FAILED \n\n"
  end	
 end
