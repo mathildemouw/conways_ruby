@@ -5,17 +5,6 @@ class Game
 	end
  	
 	def next_turn
-		i = 0
-		j = 0
-		# @board.each do |row|
-		# 	# row.each do |cell|
-		# 	# 	cell_row = i
-		# 	# 	cell_col = j 
-		# 	# 	living_neighbors = number_of_living_neighbors(cell_row, cell_col)
-		# 	# 	j++
-		# 	# end
-		# 	i++
-		# end
 	end
 
 	def number_of_living_neighbors(row, column)
