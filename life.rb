@@ -32,9 +32,9 @@ class Game
 	end
 
 	def number_of_living_neighbors(r, c)
-		@board[r - 1][c - 1] 		+ @board[r - 1][c] 	+ (@board[r - 1][c + 1] || @board[r - 1][c]) +
-		@board[r][c - 1] 													 	+ (@board[r][c + 1] || @board[r][c])				 +
-		(@board[r + 1][c - 1]) 	+ @board[r + 1][c] 	+ (@board[r + 1][c + 1] || @board[r + 1][c])
+		@board[r - 1][c - 1]   + @board[r - 1][c] 	+ (@board[r - 1][c + 1] || @board[r - 1][c]) +
+		@board[r][c - 1] 							+ (@board[r][c + 1] || @board[r][c])		 +
+		(@board[r + 1] ? @board[r + 1][c - 1] : @board[0][c - 1]) + (@board[r + 1] ? @board[r + 1][c] : @board[0][c]) 	+ (@board[r + 1] ? (@board[r + 1][c + 1] || @board[r + 1][c]) : (@board[0][c+1] || @board[0][0]))
 	end
 
 	def visualize_board
