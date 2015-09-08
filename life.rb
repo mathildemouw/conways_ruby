@@ -5,10 +5,21 @@ class Game
 	end
  	
 	def next_turn
-
+		new_board = []
+		@board.each_with_index do |row, r_index|
+			new_row = []
+			row.each_with_index do |cell, c_index|
+				n = number_of_living_neighbors(r_index, c_index)
+				new_cell = transform_aliveness(cell, n)
+				new_row << new_cell
+				p "#{c_index}, #{r_index}, #{cell}, #{new_cell}"
+			end
+			new_board << new_row
+		end
+		new_board
 	end
 
-	def transform_cell(cell_value, living_neighbors)
+	def transform_aliveness(cell_value, living_neighbors)
 		if living_neighbors > 3
 			return 0
 		elsif living_neighbors < 2
@@ -20,10 +31,10 @@ class Game
 		end
 	end
 
-	def number_of_living_neighbors(row, column)
-		@board[row - 1][column - 1] 	+ @board[row - 1][column] 	+ (@board[row - 1][column + 1] || @board[row - 1][column]) +
-		@board[row][column - 1] 													 			  + (@board[row][column + 1] || @board[row][column])				 +
-		@board[row + 1][column - 1] 	+ @board[row + 1][column] 	+ (@board[row + 1][column + 1] || @board[row + 1][column])
+	def number_of_living_neighbors(r, c)
+		@board[r - 1][c - 1] 		+ @board[r - 1][c] 	+ (@board[r - 1][c + 1] || @board[r - 1][c]) +
+		@board[r][c - 1] 													 	+ (@board[r][c + 1] || @board[r][c])				 +
+		(@board[r + 1][c - 1]) 	+ @board[r + 1][c] 	+ (@board[r + 1][c + 1] || @board[r + 1][c])
 	end
 
 	def visualize_board
@@ -32,16 +43,15 @@ class Game
 		end
 	end
 
-	def visualize_neighbors(row, column)
-		puts "#{@board[row - 1][column - 1]} , #{@board[row - 1][column]}, #{@board[row - 1][column + 1]}"
-		puts "#{@board[row][column - 1]}, c, #{ @board[row][column + 1]}"
-		puts "#{@board[row + 1][column - 1]}, #{@board[row + 1][column]}, #{@board[row + 1][column + 1]}"
+	def visualize_neighbors(r, c)
+		puts "#{@board[r - 1][c - 1]} , #{(@board[r - 1][c + 1] || @board[r - 1][c])}"
+		puts "#{@board[r][c - 1]}, c, #{ (@board[r][c + 1] || @board[r][c])}"
+		puts "#{@board[r + 1][c - 1]}, #{@board[r + 1][c]}, #{(@board[r + 1][c + 1] || @board[r + 1][c])}"
 
-		puts "position is row: #{row} , column #{column}"
-		puts "current value is #{@board[row][column]}"
+		puts "position is row: #{r} , column #{c}"
+		puts "current value is #{@board[r][c]}"
 		puts "*" *30
 	end
 end
-
 
 
